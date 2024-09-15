@@ -1,0 +1,4 @@
+.flask-app
+.env
+*.csv
+*.html
