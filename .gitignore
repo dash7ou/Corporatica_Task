@@ -2,3 +2,6 @@
 .env
 *.csv
 *.html
+*.png
+*.jpg
+*.jpeg
