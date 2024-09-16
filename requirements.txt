@@ -7,3 +7,7 @@ pydantic-settings==2.4.0
 uuid
 opencv-python
 pillow
+matplotlib
+scikit-learn
+textblob
+nltk

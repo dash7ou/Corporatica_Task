@@ -5,6 +5,7 @@ from flask import Flask
 from flask_restful import Api
 from pymongo import MongoClient
 from .modules.tabular import controller as dataset_controller
+from .modules.text import controller as text_controller
 from .modules.rbg import controller as rgb_controller
 from .core.settings import settings
 import os
@@ -25,6 +26,8 @@ def healthcheck():
 # Register blueprints
 app.register_blueprint(dataset_controller.dataset_bp)
 app.register_blueprint(rgb_controller.rgb_bp)
+app.register_blueprint(text_controller.text_bp)
+
 
 
 if __name__ == '__main__':
