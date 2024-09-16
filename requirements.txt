@@ -5,3 +5,5 @@ pandas
 plotly
 pydantic-settings==2.4.0
 uuid
+opencv-python
+pillow
