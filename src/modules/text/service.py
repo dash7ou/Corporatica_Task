@@ -73,46 +73,6 @@ class TextAnalysisService:
         else:
             return "neutral"
 
-    def visualize_tsne(self, text):
-        try:
-            # Convert the text into a matrix of TF-IDF features
-            vectorizer = TfidfVectorizer(stop_words='english')
-            X = vectorizer.fit_transform([text])
-            words = vectorizer.get_feature_names_out()  # Get the feature names (words)
-            X_array = X.toarray()  # Convert sparse matrix to dense array
-
-            # Check if we have enough data for t-SNE
-            n_samples, n_features = X_array.shape
-            if n_samples < 2 or n_features < 2:
-                return {'error': 'Not enough data for t-SNE visualization. Please provide more text.'}
-
-            # Determine the appropriate perplexity
-            perplexity = min(30, max(2, n_samples - 1))  # Ensure perplexity is at least 2
-
-            # Apply t-SNE (reduce dimensionality to 2D)
-            tsne = TSNE(n_components=2, perplexity=perplexity, random_state=42)
-            X_tsne = tsne.fit_transform(X_array)
-
-            # Plot the t-SNE visualization
-            plt.figure(figsize=(10, 7))
-            plt.scatter(X_tsne[:, 0], X_tsne[:, 1])
-
-            # Annotate points with the words
-            for i, word in enumerate(words):
-                plt.annotate(word, (X_tsne[i, 0], X_tsne[i, 1]))
-
-            # Save the visualization
-            visualization_filename = 'tsne_plot.png'
-            visualization_path = os.path.join(self.visualization_folder, visualization_filename)
-            plt.savefig(visualization_path)
-            plt.close()
-
-            return {'visualization_url': f'/static/visualizations/{visualization_filename}'}
-        except Exception as e:
-            return {'error': str(e)}
-
-
-
     def process_text(self, text, search_query=None, category=None, custom_query=None):
         results = {}
         

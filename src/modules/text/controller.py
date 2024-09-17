@@ -36,17 +36,6 @@ def analyze_sentiment():
     sentiment = text_service.analyze_sentiment(text)
     return jsonify({'sentiment': sentiment}), 200
 
-@text_bp.route('/visualize', methods=['POST'])
-def visualize_text():
-    data = request.json
-    text = data.get('text')
-    if not text:
-        return jsonify({'error': 'No text provided'}), 400
-    response = text_service.visualize_tsne(text)
-    if 'error' in response:
-        return jsonify(response), 400
-    return jsonify({'visualization_url': response['visualization_url']}), 200
-
 @text_bp.route('/process', methods=['POST'])
 def process_text():
     data = request.json
