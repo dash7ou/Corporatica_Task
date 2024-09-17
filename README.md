@@ -88,7 +88,7 @@ The application is built using a combination of powerful Python libraries and to
 
 ---
 
-### Kubernetes Setup with Minikube
+### Kubernetes Setup with Minikube - Just Locally
 
 To deploy the ProcessApp application using Minikube, follow these steps:
 
