@@ -63,7 +63,7 @@ class DatasetService:
                 return {"error": "Invalid chart type"}
             
             chart_id = str(uuid.uuid4())
-            chart_path = os.path.join(self.chart_dir, "./static/charts" f'{chart_id}.html')
+            chart_path = os.path.join(self.chart_dir, "static", "charts", f'{chart_id}.html')
             fig.write_html(chart_path, include_plotlyjs='cdn')
 
             chart_url = f'/static/charts/{chart_id}.html'

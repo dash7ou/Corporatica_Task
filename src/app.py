@@ -11,9 +11,13 @@ from .core.settings import settings
 import os
 
 
-app = Flask(__name__)
-app.config['UPLOAD_FOLDER'] = os.path.join(app.root_path, 'static', 'images')
-app.config['ALLOWED_EXTENSIONS'] = {'png', 'jpg', 'jpeg'}
+# app = Flask(__name__)
+static_dir = os.path.join(os.path.dirname(os.path.abspath(__file__)), '..', 'static')
+
+app = Flask(__name__, static_folder=static_dir)
+
+# app.config['UPLOAD_FOLDER'] = os.path.join(app.root_path, 'static', 'images')
+# app.config['ALLOWED_EXTENSIONS'] = {'png', 'jpg', 'jpeg'}
 
 api = Api(app)
 

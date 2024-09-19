@@ -48,6 +48,19 @@ RUN mkdir /home/myuser/code
 WORKDIR /home/myuser/code/app
 COPY . .
 
+RUN mkdir -p /home/myuser/code/app/static && \
+    chmod -R 777 /home/myuser/code/app/static
+
+RUN mkdir -p /home/myuser/code/app/static/charts && \
+    chmod -R 777 /home/myuser/code/app/static/charts
+
+RUN mkdir -p /home/myuser/code/app/static/rgb_image && \
+    chmod -R 777 /home/myuser/code/app/static/rgb_image
+
+RUN mkdir -p /home/myuser/code/app/static/visualizations && \
+    chmod -R 777 /home/myuser/code/app/static/visualizations
+
+
 EXPOSE 5000
 
 # make sure all messages always reach console
