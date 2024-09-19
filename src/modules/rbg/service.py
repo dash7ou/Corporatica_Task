@@ -45,7 +45,7 @@ class ImageService:
         mask_path = os.path.join(self.upload_folder, mask_filename)
         cv2.imwrite(mask_path, mask)
 
-        return {'segmentation_mask': mask_filename}
+        return {'segmentation_mask': "/static/rgb_image/" + mask_filename}
 
     def manipulate_image(self, filename, manipulation_params):
         image_path = self.get_image_path(filename)
@@ -69,10 +69,10 @@ class ImageService:
             format = manipulation_params.get('format', 'JPEG')
             converted_filename = f'{filename.split(".")[0]}.{format.lower()}'
             image.save(os.path.join(self.upload_folder, converted_filename), format)
-            return {'converted_image': converted_filename}
+            return {'converted_image': "/static/rgb_image/" + converted_filename}
         else:
             return {'error': 'Invalid action'}
 
         manipulated_filename = f'manipulated_{filename}'
         image.save(os.path.join(self.upload_folder, manipulated_filename))
-        return {'manipulated_image': manipulated_filename}
+        return {'manipulated_image': "/static/rgb_image/" + manipulated_filename}
